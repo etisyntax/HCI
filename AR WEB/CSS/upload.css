@@ -1,0 +1,152 @@
+/* ===== Upload Page Styling (Matches Content Library Theme) ===== */
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f7f8fc;
+  color: #333;
+}
+
+/* Consistent Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 15px 25px;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2b2d42;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 230px;
+  height: calc(100% - 60px);
+  background: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 10px 25px;
+  color: #444;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background: #f0f2ff;
+  color: #2b2d42;
+  border-left: 4px solid #2b2d42;
+}
+
+/* ===== Upload Form Layout ===== */
+.main-content {
+  margin-left: 250px;
+  padding: 40px;
+}
+
+.upload-box {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.upload-box h1 {
+  margin-bottom: 20px;
+  color: #2b2d42;
+  font-size: 1.6rem;
+}
+
+.upload-area {
+  border: 2px dashed #b0b0b0;
+  border-radius: 12px;
+  padding: 40px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+  background: #f0f2ff;
+  border-color: #2b2d42;
+}
+
+.upload-area p {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Button Styling */
+.upload-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  background: #2b2d42;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.upload-btn:hover {
+  background: #1f2130;
+}
+
+/* Uploaded File Preview */
+.file-preview {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #f8f9ff;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+  .upload-box {
+    padding: 25px;
+  }
+}

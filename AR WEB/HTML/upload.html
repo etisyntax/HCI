@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Content - HoloClass</title>
+  <link rel="stylesheet" href="/CSS/upload.css" type="text/css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🌐 HoloClass</div>
+    <div class="title">Upload New Content</div>
+  </header>
+
+  <main class="upload-main">
+    <div class="upload-box" id="uploadBox">
+      <p>📤 Drag & drop files here or <button id="browseBtn">Browse</button></p>
+      <input type="file" id="fileInput" multiple style="display:none">
+      <div id="fileList"></div>
+    </div>
+    <button id="uploadBtn" class="upload-btn">Upload Files</button>
+  </main>
+
+  <script>
+    const uploadBox = document.getElementById('uploadBox');
+    const fileInput = document.getElementById('fileInput');
+    const browseBtn = document.getElementById('browseBtn');
+    const fileList = document.getElementById('fileList');
+    const uploadBtn = document.getElementById('uploadBtn');
+    let files = [];
+
+    browseBtn.onclick = () => fileInput.click();
+    fileInput.onchange = (e) => handleFiles(e.target.files);
+
+    uploadBox.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadBox.classList.add('dragging');
+    });
+
+    uploadBox.addEventListener('dragleave', () => {
+      uploadBox.classList.remove('dragging');
+    });
+
+    uploadBox.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadBox.classList.remove('dragging');
+      handleFiles(e.dataTransfer.files);
+    });
+
+    function handleFiles(selectedFiles) {
+      files = [...files, ...selectedFiles];
+      displayFiles();
+    }
+
+    function displayFiles() {
+      fileList.innerHTML = '';
+      files.forEach(file => {
+        const fileType = file.name.split('.').pop().toLowerCase();
+        let icon = '📄';
+        if (['glb', 'gltf', 'obj'].includes(fileType)) icon = '🧩';
+        else if (fileType === 'pdf') icon = '📘';
+        else if (['mp4', 'mov'].includes(fileType)) icon = '🎥';
+
+        const item = document.createElement('div');
+        item.className = 'file-item';
+        item.innerHTML = `${icon} ${file.name}`;
+        fileList.appendChild(item);
+      });
+    }
+
+    uploadBtn.onclick = () => {
+      if (files.length === 0) return alert("Please select at least one file.");
+
+      // Save uploaded files in localStorage
+      const savedFiles = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
+      const newFiles = files.map(f => f.name);
+      localStorage.setItem('uploadedFiles', JSON.stringify([...savedFiles, ...newFiles]));
+
+      alert("Files uploaded successfully!");
+      window.location.href = "content-library.html"; // Redirect back
+    };
+  </script>
+</body>
+</html>
